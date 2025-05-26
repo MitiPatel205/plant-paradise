@@ -1,0 +1,500 @@
+<%- include('partials/header') %>
+
+<!-- Hero Section -->
+<!-- Hero Section with Image as Background Layer -->
+<section class="hero-section text-center position-relative d-flex align-items-center justify-content-center" style="min-height: 60vh; overflow: hidden;">
+  <!-- Background Image (acts as a background, but is in HTML) -->
+  <img src="./images/hero.jpeg" 
+       alt="Plants background" 
+       class="hero-bg-img position-absolute top-0 start-0 w-100 h-100" 
+       style="object-fit: cover; z-index: 1; opacity: 0.7;">
+  <!-- Optional Overlay for readability -->
+  <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(17, 16, 16, 0.788); z-index:2;"></div>
+  <!-- Hero Content -->
+  <div class="container position-relative z-3">
+    <h1 class="display-4 mb-3" style="color: var(--forest);">Welcome to Plant Paradise</h1>
+    <p class="lead mb-4" style="color: var(--sage);">
+      Discover, collect, and share your favorite plants. Nature at your fingertips!
+    </p>
+    <a href="/plants" class="btn btn-success btn-lg shadow">Browse Plants</a>
+  </div>
+</section>
+
+<!-- Featured Plants -->
+<!-- Featured Plants Section -->
+<section class="featured-plants-section py-5 mb-5">
+  <div class="container">
+    <!-- Section Heading with Icon and Intro -->
+    <div class="text-center mb-4">
+      <h2 class="mb-2" style="color: var(--forest); font-weight: bold;">
+        <i class="bi bi-emoji-nature me-2" style="color: var(--moss);"></i>
+        Featured Plants
+      </h2>
+      <p class="lead" style="color: var(--sage); max-width: 600px; margin: 0 auto;">
+        Handpicked for you! Discover our most-loved and beginner-friendly plants to brighten your home and purify your air.
+      </p>
+    </div>
+    <!-- Plant Cards -->
+    <div class="row justify-content-center">
+      <% plants.slice(0,3).forEach(plant => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow plant-card h-100 position-relative">
+            <!-- Optional: Plant Badge -->
+            <% if (plant.isNew) { %>
+              <span class="badge bg-success position-absolute top-0 end-0 m-2 featured-badge">New</span>
+            <% } else if (plant.isEasyCare) { %>
+              <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2 featured-badge">Easy Care</span>
+            <% } %>
+            <img src="<%= plant.image %>" class="card h-100 shadow-sm blog-card card-img-top" alt="<%= plant.name %>">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title" style="color: var(--forest);"><%= plant.name %></h5>
+              <p class="card-text" style="color: var(--sage);"><%= plant.description %></p>
+              <div class="mt-auto">
+                <a href="/plants/<%= plant.id %>" class="btn btn-outline-success rounded-pill btn-sm">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <!-- See All Plants Button -->
+    <div class="text-center">
+      <a href="/plants" class="btn btn-success rounded-pill mt-3 px-4">See All Plants</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- About Section -->
+<section class="about-section py-5 position-relative" style="background: var(--earth); overflow: hidden;">
+  <!-- Video Background -->
+  <video class="about-bg-video" autoplay loop muted playsinline>
+    <source src="./images/about-bg.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <!-- Overlay for readability -->
+  <div class="about-bg-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="row align-items-center">
+      <!-- Left: About Content -->
+      <div class="col-md-6 text-white">
+        <h3 class="mb-3 fw-bold">About <span style="color: var(--moss);">Plant Paradise</span></h3>
+        <p class="lead mb-4">
+          Welcome to <strong>Plant Paradise</strong>—your green escape in the digital world. We believe every home deserves a touch of nature, and every plant lover deserves a thriving community.
+        </p>
+        <a href="/join" class="btn btn-success px-4 py-2" style="background: var(--forest); border: none; font-weight: 600;">
+          Join the Green Community
+        </a>
+      </div>
+      <!-- Right: Features -->
+      <div class="col-md-6">
+        <div class="feature-grid">
+          <div class="feature-box">
+            <span class="feature-icon">🌱</span>
+            <div>
+              <h6>Curated Collections</h6>
+              <p>Discover unique plants, handpicked for every space and skill level.</p>
+            </div>
+          </div>
+          <div class="feature-box">
+            <span class="feature-icon">🌞</span>
+            <div>
+              <h6>Expert Guidance</h6>
+              <p>Personalized tips and seasonal care advice from horticulture experts.</p>
+            </div>
+          </div>
+          <div class="feature-box">
+            <span class="feature-icon">🌎</span>
+            <div>
+              <h6>Community Sharing</h6>
+              <p>Connect, share cuttings, and swap stories with fellow plant lovers.</p>
+            </div>
+          </div>
+          <div class="feature-box">
+            <span class="feature-icon">🪴</span>
+            <div>
+              <h6>Eco Inspiration</h6>
+              <p>Creative DIYs and eco-friendly tips to green your lifestyle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Care Tips Section -->
+<!-- Care Tips Section -->
+<section class="care-tips-section py-5 mb-5">
+  <div class="container">
+    <!-- Section Heading with Icon -->
+    <div class="d-flex flex-column align-items-center mb-4">
+      <i class="bi bi-emoji-smile fs-1" style="color: var(--moss);"></i>
+      <h3 class="mt-2 mb-1 text-center" style="color: var(--forest); font-weight: bold;">Plant Care Tips</h3>
+      <p class="lead text-center" style="color: var(--sage); max-width: 600px;">
+        Healthy plants, happy life! Explore these expert-backed tips to keep your green friends thriving all year round.
+      </p>
+    </div>
+    <!-- Highlighted Tip Card -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-8">
+        <div class="highlight-tip-card p-4 rounded shadow-sm d-flex align-items-center" style="background: var(--earth);">
+          <i class="bi bi-stars fs-2 me-3" style="color: var(--moss);"></i>
+          <div>
+            <strong style="color: var(--forest); font-size: 1.1rem;">Pro Tip:</strong>
+            <span style="color: var(--forest);">
+              Group plants with similar light and water needs together. This makes care easier and helps them thrive in the right environment.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Tips Grid -->
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="tip-card p-4 h-100 rounded shadow-sm">
+          <i class="bi bi-droplet-half fs-1" style="color: var(--moss);"></i>
+          <h5 class="mt-3" style="color: var(--forest);">Watering Wisdom</h5>
+          <p class="text-muted">Check the top inch of soil before watering. Most plants prefer to dry out a bit between waterings to avoid root rot.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="tip-card p-4 h-100 rounded shadow-sm">
+          <i class="bi bi-brightness-high fs-1" style="color: var(--moss);"></i>
+          <h5 class="mt-3" style="color: var(--forest);">Sunlight Savvy</h5>
+          <p class="text-muted">Most houseplants love bright, indirect sunlight. Rotate your pots weekly for even growth and lush leaves.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="tip-card p-4 h-100 rounded shadow-sm">
+          <i class="bi bi-flower1 fs-1" style="color: var(--moss);"></i>
+          <h5 class="mt-3" style="color: var(--forest);">Soil & Nutrition</h5>
+          <p class="text-muted">Use well-draining soil and feed with organic fertilizer monthly during the growing season for best results.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Did You Know Fact -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-8">
+        <div class="did-you-know p-3 rounded text-center mx-auto" style="background: var(--cream); color: var(--forest); font-style: italic;">
+          <i class="bi bi-lightbulb me-2" style="color: var(--moss);"></i>
+          Did you know? Plants not only purify the air but can also boost your mood and productivity!
+        </div>
+      </div>
+    </div>
+    <!-- CTA Button -->
+    <div class="text-center mt-4">
+      <a href="/care-tips" class="btn btn-success rounded-pill">More Care Tips</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5 mb-5" style="background: var(--earth);">
+  <div class="container">
+    <h3 class="mb-4 text-center fw-bold" style="color: var(--forest); letter-spacing: 1px;">
+      <span class="testimonial-leaf">🌿</span>
+      What Our Users Say
+      <span class="testimonial-leaf">🌿</span>
+    </h3>
+    <div class="testimonial-carousel-wrapper">
+      <button class="testimonial-arrow left" aria-label="Scroll left">‹</button>
+      <div class="testimonial-carousel" id="testimonial-carousel">
+        <!-- Testimonial Card 1 -->
+        <div class="testimonial-card p-4 rounded shadow-sm h-100">
+          <p class="testimonial-text">"Plant Paradise made it so easy to grow my indoor jungle. The care tips are spot on!"</p>
+          <div class="d-flex align-items-center mt-3">
+            <img src="./images/user.jpeg" alt="User 1" class="rounded-circle me-2" width="48" height="48">
+            <div>
+              <span class="testimonial-user">Ava</span>
+              <div class="testimonial-role">Plant Enthusiast</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 2 -->
+        <div class="testimonial-card p-4 rounded shadow-sm h-100">
+          <p class="testimonial-text">"I love sharing my plant collection with the community. The site is beautiful and easy to use."</p>
+          <div class="d-flex align-items-center mt-3">
+            <img src="./images/user.jpeg" alt="User 2" class="rounded-circle me-2" width="48" height="48">
+            <div>
+              <span class="testimonial-user">Liam</span>
+              <div class="testimonial-role">Urban Gardener</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 3 -->
+        <div class="testimonial-card p-4 rounded shadow-sm h-100">
+          <p class="testimonial-text">"The plant care reminders are a lifesaver! My plants have never looked better."</p>
+          <div class="d-flex align-items-center mt-3">
+            <img src="./images/user.jpeg" alt="User 3" class="rounded-circle me-2" width="48" height="48">
+            <div>
+              <span class="testimonial-user">Maya</span>
+              <div class="testimonial-role">Home Botanist</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 4 -->
+        <div class="testimonial-card p-4 rounded shadow-sm h-100">
+          <p class="testimonial-text">"I joined for the tips, but stayed for the amazing community. Everyone is so helpful!"</p>
+          <div class="d-flex align-items-center mt-3">
+            <img src="./images/user.jpeg" alt="User 4" class="rounded-circle me-2" width="48" height="48">
+            <div>
+              <span class="testimonial-user">Noah</span>
+              <div class="testimonial-role">Succulent Collector</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 5 -->
+        <div class="testimonial-card p-4 rounded shadow-sm h-100">
+          <p class="testimonial-text">"Plant Paradise inspires me to try new plants and share my progress with friends!"</p>
+          <div class="d-flex align-items-center mt-3">
+            <img src="./images/user.jpeg" alt="User 5" class="rounded-circle me-2" width="48" height="48">
+            <div>
+              <span class="testimonial-user">Ella</span>
+              <div class="testimonial-role">Green Thumb</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="testimonial-arrow right" aria-label="Scroll right">›</button>
+    </div>
+    <div class="testimonial-features mt-4 text-center">
+      <span class="badge bg-success-subtle text-success mx-1">🌱 1000+ Happy Plant Lovers</span>
+      <span class="badge bg-success-subtle text-success mx-1">🌿 Verified Reviews</span>
+      <span class="badge bg-success-subtle text-success mx-1">🌞 Community Driven</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- Call to Action Section -->
+<section class="cta-section text-center py-5 position-relative mb-5">
+  <div class="container position-relative">
+    <div class="cta-content mx-auto p-4 rounded shadow">
+      <h3 class="mb-3 font-weight: bold;">
+        Ready to grow your collection?
+      </h3>
+      <p class="mb-4 font-size: 1.15rem;">
+        Join our vibrant community of plant lovers! Share your green treasures, discover new favorites, and get expert tips.
+      </p>
+      <a href="/add" class="btn btn-success btn-lg rounded-pill shadow">
+        <i class="bi bi-plus-circle me-2"></i>Add Your First Plant
+      </a>
+    </div>
+    <!-- Decorative SVG illustration (optional) -->
+    <img src="/public/images/plant-leaf.svg" alt="" class="cta-leaf d-none d-md-block">
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section py-5">
+  <div class="container">
+    <h3 class="mb-4 text-center" style="color: var(--forest);">Frequently Asked Questions</h3>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+            How often should I water my plants?
+          </button>
+        </h2>
+        <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Most houseplants prefer their soil to dry out between waterings. Check the top inch of soil; if it's dry, it's time to water!
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+            What is the best spot for my indoor plants?
+          </button>
+        </h2>
+        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Most indoor plants love bright, indirect sunlight. Avoid direct afternoon sun unless your plant is a sun-lover like succulents.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+            Are your plants pet-friendly?
+          </button>
+        </h2>
+        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes! We have a special collection of pet-safe plants. Check the plant details or our Care Tips section for more info.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Section -->
+<section class="blog-section py-5" style="background: var(--earth);">
+  <div class="container">
+    <h3 class="mb-4 text-center fw-bold" style="color: var(--forest); letter-spacing: 1px;">
+      <span class="blog-leaf">🌿</span>
+      From Our Blog
+      <span class="blog-leaf">🌿</span>
+    </h3>
+    <div class="blog-carousel-wrapper">
+      <button class="blog-arrow left" aria-label="Scroll left">‹</button>
+      <div class="blog-carousel" id="blog-carousel">
+    
+        <!-- Blog Card 1 -->
+         
+        <div class="card h-100 shadow-sm blog-card">
+        <img src="./images/blog1.jpg" class="card h-100 shadow-sm blog-card card-img-top" alt="Blog 1">  
+          <div class="card-body">
+            <h5 class="card-title">5 Easy Indoor Plants for Beginners</h5>
+            <p class="card-text">Start your plant journey with these low-maintenance beauties that thrive indoors.</p>
+            <a href="/blog/5-easy-indoor-plants" class="btn btn-outline-success rounded-pill">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Card 2 -->
+        <div class="card h-100 shadow-sm blog-card">
+          <img src="./images/blog2.jpg" class="card h-100 shadow-sm blog-card card-img-top" alt="Blog 2">
+          <div class="card-body">
+            <h5 class="card-title">How to Repot Your Plants</h5>
+            <p class="card-text">A step-by-step guide to help your plants grow strong and healthy in new soil.</p>
+            <a href="/blog/repotting-guide" class="btn btn-outline-success rounded-pill">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Card 3 -->
+        <div class="card h-100 shadow-sm blog-card">
+          <img src="./images/blog3.jpg" class="card h-100 shadow-sm blog-card card-img-top" alt="Blog 3">
+          <div class="card-body">
+            <h5 class="card-title">Top 10 Air-Purifying Plants</h5>
+            <p class="card-text">Breathe easy with these beautiful plants that clean the air in your home.</p>
+            <a href="/blog/air-purifying-plants" class="btn btn-outline-success rounded-pill">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Card 4 -->
+        <div class="card h-100 shadow-sm blog-card">
+          <img src="./images/blog4.jpg" class="card h-100 shadow-sm blog-card card-img-top" alt="Blog 4">
+          <div class="card-body">
+            <h5 class="card-title">DIY Plant Terrarium Ideas</h5>
+            <p class="card-text">Get creative with these easy and beautiful terrarium projects for your home.</p>
+            <a href="/blog/terrarium-ideas" class="btn btn-outline-success rounded-pill">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Card 5 -->
+        <div class="card h-100 shadow-sm blog-card">
+          <img src="./images/blog5.jpg" class="card h-100 shadow-sm blog-card card-img-top" alt="Blog 5">
+          <div class="card-body">
+            <h5 class="card-title">Seasonal Plant Care Calendar</h5>
+            <p class="card-text">Stay on top of your plant care with our month-by-month guide.</p>
+            <a href="/blog/plant-care-calendar" class="btn btn-outline-success rounded-pill">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Card 6 -->
+        <div class="card h-100 shadow-sm blog-card">
+          <img src="./images/blog6.jpg" class="card h-100 shadow-sm blog-card card-img-top" alt="Blog 6">
+          <div class="card-body">
+            <h5 class="card-title">Pet-Friendly Houseplants</h5>
+            <p class="card-text">Safe and stylish plants for homes with furry friends.</p>
+            <a href="/blog/pet-friendly-plants" class="btn btn-outline-success rounded-pill">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Card 7 (Example for more than 6) -->
+        <div class="card h-100 shadow-sm blog-card">
+          <img src="./images/blog7.jpg" class="card h-100 shadow-sm blog-card card-img-top" alt="Blog 7">
+          <div class="card-body">
+            <h5 class="card-title">How to Propagate Succulents</h5>
+            <p class="card-text">Multiply your succulents with these simple propagation tips.</p>
+            <a href="/blog/propagate-succulents" class="btn btn-outline-success rounded-pill">Read More</a>
+          </div>
+        </div>
+        <!-- Add more blog cards as needed -->
+      </div>
+      <button class="blog-arrow right" aria-label="Scroll right">›</button>
+    </div>
+    <div class="blog-features mt-4 text-center">
+      <span class="badge bg-success-subtle text-success mx-1">🌱 Weekly Plant Tips</span>
+      <span class="badge bg-success-subtle text-success mx-1">🌿 DIY Projects</span>
+      <span class="badge bg-success-subtle text-success mx-1">🌞 Expert Advice</span>
+      <span class="badge bg-success-subtle text-success mx-1">🌺 Trending Topics</span>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery section -->
+ <section class="gallery-section py-5" style="background: var(--cream);">
+  <div class="container">
+    <h3 class="mb-3 text-center fw-bold" style="color: var(--forest); letter-spacing: 1px;">
+      <span class="blog-leaf">🪴</span>
+      Plant Gallery
+      <span class="blog-leaf">🪴</span>
+    </h3>
+    <p class="text-center mb-4" style="color: var(--sage); max-width: 600px; margin: 0 auto;">
+      Explore our curated collection of beautiful plants from around the world. Browse by category, discover rare varieties, and get inspired to grow your own indoor jungle!
+    </p>
+    <!-- Category Filters -->
+    <div class="gallery-categories d-flex flex-wrap justify-content-center mb-4">
+      <button class="gallery-category active" data-category="all">All</button>
+      <button class="gallery-category" data-category="indoor">Indoor</button>
+      <button class="gallery-category" data-category="outdoor">Outdoor</button>
+      <button class="gallery-category" data-category="flowering">Flowering</button>
+      <button class="gallery-category" data-category="succulent">Succulents</button>
+      <button class="gallery-category" data-category="rare">Rare Finds</button>
+    </div>
+    <!-- Gallery Grid -->
+    <div class="row g-3 gallery-grid">
+      <div class="col-6 col-md-3 gallery-item" data-category="indoor">
+        <img src="./images/Snake Plant.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Gallery Plant 1">
+        <div class="gallery-caption">Snake Plant <span class="badge bg-success ms-1">Indoor</span></div>
+      </div>
+      <div class="col-6 col-md-3 gallery-item" data-category="flowering">
+        <img src="./images/Peace Lily.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Gallery Plant 2">
+        <div class="gallery-caption">Peace Lily <span class="badge bg-success ms-1">Flowering</span></div>
+      </div>
+      <div class="col-6 col-md-3 gallery-item" data-category="succulent">
+        <img src="./images/Aloe Vera .jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Gallery Plant 3">
+        <div class="gallery-caption">Aloe Vera <span class="badge bg-success ms-1">Succulent</span></div>
+      </div>
+      <div class="col-6 col-md-3 gallery-item" data-category="rare">
+        <img src="./images/Monstera Variegata .jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Gallery Plant 4">
+        <div class="gallery-caption">Monstera Variegata <span class="badge bg-success ms-1">Rare</span></div>
+      </div>
+      <!-- Add more gallery items with appropriate data-category -->
+    </div>
+    <!-- Gallery Features -->
+    <div class="gallery-features mt-4 text-center">
+      <span class="badge bg-success-subtle text-success mx-1">🌱 100+ Unique Species</span>
+      <span class="badge bg-success-subtle text-success mx-1">🌿 Easy Care Tips</span>
+      <span class="badge bg-success-subtle text-success mx-1">🌸 Seasonal Highlights</span>
+      <span class="badge bg-success-subtle text-success mx-1">🪴 Community Favorites</span>
+    </div>
+    <div class="text-center mt-4">
+      <a href="/gallery" class="btn btn-success rounded-pill px-4">View Full Gallery</a>
+    </div>
+  </div>
+</section>
+
+
+<%- include('partials/footer') %>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const carousel = document.getElementById('testimonial-carousel');
+  document.querySelector('.testimonial-arrow.left').onclick = () => {
+    carousel.scrollBy({ left: -350, behavior: 'smooth' });
+  };
+  document.querySelector('.testimonial-arrow.right').onclick = () => {
+    carousel.scrollBy({ left: 350, behavior: 'smooth' });
+  };
+</script>
+<script>
+  const blogCarousel = document.getElementById('blog-carousel');
+  document.querySelector('.blog-arrow.left').onclick = () => {
+    blogCarousel.scrollBy({ left: -350, behavior: 'smooth' });
+  };
+  document.querySelector('.blog-arrow.right').onclick = () => {
+    blogCarousel.scrollBy({ left: 350, behavior: 'smooth' });
+  };
+</script>

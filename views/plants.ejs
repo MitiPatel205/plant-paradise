@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<h2 class="mb-4 text-center" style="color: var(--forest);">All Plants</h2>
+<div class="container">
+  <div class="row">
+    <% plants.forEach(plant => { %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow plant-card h-100 position-relative">
+          <% if (plant.isNew) { %>
+            <span class="badge bg-success position-absolute top-0 end-0 m-2">New</span>
+          <% } else if (plant.isEasyCare) { %>
+            <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2">Easy Care</span>
+          <% } %>
+          <img src="<%= plant.image %>" class="card-img-top" alt="<%= plant.name %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= plant.name %></h5>
+            <p class="card-text"><%= plant.description %></p>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
