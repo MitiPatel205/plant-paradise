@@ -474,7 +474,239 @@
     </div>
   </div>
 </section>
+<!--plant category-->
+<section class="plant-categories-section py-5 mb-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">
+        <i class="bi bi-grid-3x3-gap me-2"></i>
+        Explore by Category
+      </h2>
+      <p class="section-lead">
+        Find your next green companion by browsing popular plant types!
+      </p>
+    </div>
+    <div class="row justify-content-center">
+      <% categories.forEach(category => { %>
+        <div class="col-6 col-md-3 mb-4">
+          <div class="category-card h-100 text-center p-3">
+            <i class="<%= category.icon %> fs-2 mb-2"></i>
+            <h6 class="category-title"><%= category.name %></h6>
+            <p class="category-desc"><%= category.description %></p>
+            <a href="/plants?category=<%= category.slug %>" class="btn btn-outline-success btn-sm rounded-pill">View</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<!--Plant of the Week-->
+<section class="plant-of-week-section py-5 mb-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-center plant-of-week-card shadow-lg rounded-4 position-relative overflow-hidden">
+      <div class="col-md-5 text-center px-4 py-4">
+        <div class="plant-of-week-img-wrapper mx-auto">
+          <img src="./images/Monstera Variegata .jpg" alt="<%= plantOfWeek.name %>" class="plant-of-week-img img-fluid shadow">
+        </div>
+      </div>
+      <div class="col-md-7 px-4 py-4">
+        <% if (plantOfWeek.careLevel) { %>
+          <span class="badge rounded-pill bg-success-subtle text-success mb-2">
+            <i class="bi bi-activity me-1"></i> <%= plantOfWeek.careLevel %> Care
+          </span>
+        <% } %>
+        <h2 class="section-title mb-2">
+          <i class="bi bi-star-fill me-2" style="color: var(--moss);"></i>
+          Plant of the Week
+        </h2>
+        <h4 class="plant-week-title mb-2"><%= plantOfWeek.name %></h4>
+        <% if (plantOfWeek.origin) { %>
+          <div class="plant-week-origin mb-2" style="color: var(--sage);">
+            <i class="bi bi-geo-alt me-1"></i> Native to <%= plantOfWeek.origin %>
+          </div>
+        <% } %>
+        <p class="plant-week-desc mb-3"><%= plantOfWeek.description %></p>
+        <ul class="plant-week-info mb-4">
+          <li><strong>Light:</strong> <%= plantOfWeek.light %></li>
+          <li><strong>Water:</strong> <%= plantOfWeek.water %></li>
+          <li><strong>Pet Friendly:</strong> <%= plantOfWeek.petFriendly ? 'Yes' : 'No' %></li>
+        </ul>
+        <% if (plantOfWeek.funFact) { %>
+          <div class="plant-week-fact mb-3 p-3 rounded" style="background: var(--earth); color: var(--forest); font-style: italic;">
+            <i class="bi bi-lightbulb me-2" style="color: var(--moss);"></i>
+            Fun Fact: <%= plantOfWeek.funFact %>
+          </div>
+        <% } %>
+        <% if (plantOfWeek.whyWeLove) { %>
+          <div class="plant-week-love mb-3 p-2 rounded" style="background: var(--cream); color: var(--forest);">
+            <i class="bi bi-heart-fill me-1" style="color: var(--moss);"></i>
+            <%= plantOfWeek.whyWeLove %>
+          </div>
+        <% } %>
+        <a href="/plants/<%= plantOfWeek.id %>" class="btn btn-success rounded-pill">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!--Trending Plants-->
+<section class="trending-plants-section py-5 mb-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">
+        <i class="bi bi-fire me-2"></i>
+        Trending Now
+      </h2>
+      <p class="section-lead">
+        See what’s hot in the Plant Paradise community! These plants are getting the most love, shares, and attention this week.
+      </p>
+    </div>
+    <div class="row justify-content-center trending-plants-grid">
+      <% trendingPlants.forEach(plant => { %>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <div class="plant-card trending-plant-card h-100 position-relative shadow rounded-4">
+            <% if (plant.isNew) { %>
+              <span class="badge trending-badge bg-success position-absolute top-0 start-0 m-2">New</span>
+            <% } %>
+            <% if (plant.isRare) { %>
+              <span class="badge trending-badge bg-warning text-dark position-absolute top-0 end-0 m-2">Rare</span>
+            <% } %>
+            <img src="<%= plant.image %>" class="card-img-top trending-plant-img" alt="<%= plant.name %>">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title mb-1" style="color: var(--forest);"><%= plant.name %></h5>
+              <div class="mb-2">
+                <% if (plant.careLevel) { %>
+                  <span class="badge bg-success-subtle text-success me-1"><i class="bi bi-activity me-1"></i><%= plant.careLevel %> Care</span>
+                <% } %>
+                <% if (plant.light) { %>
+                  <span class="badge bg-success-subtle text-success me-1"><i class="bi bi-brightness-high me-1"></i><%= plant.light %></span>
+                <% } %>
+                <% if (plant.petFriendly) { %>
+                  <span class="badge bg-success-subtle text-success"><i class="bi bi-heart me-1"></i>Pet Friendly</span>
+                <% } %>
+              </div>
+              <p class="card-text mb-2" style="color: var(--sage);"><%= plant.shortDescription %></p>
+              <% if (plant.whyTrending) { %>
+                <div class="why-trending mb-2 p-2 rounded" style="background: var(--earth); color: var(--forest); font-size: 0.97em;">
+                  <i class="bi bi-graph-up-arrow me-1" style="color: var(--moss);"></i>
+                  <%= plant.whyTrending %>
+                </div>
+              <% } %>
+              <div class="d-flex align-items-center mt-auto">
+                <% if (plant.likes) { %>
+                  <span class="me-2 text-success"><i class="bi bi-heart-fill"></i> <%= plant.likes %></span>
+                <% } %>
+                <% if (plant.shares) { %>
+                  <span class="me-2 text-success"><i class="bi bi-share-fill"></i> <%= plant.shares %></span>
+                <% } %>
+                <a href="/plants/<%= plant.id %>" class="btn btn-outline-success btn-sm rounded-pill ms-auto">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <div class="text-center mt-4">
+      <a href="/plants?sort=trending" class="btn btn-success rounded-pill px-4">See All Trending</a>
+    </div>
+  </div>
+</section>
+
+<!--Seasonal Picks-->
+<section class="seasonal-picks-section py-5 mb-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">
+        <i class="bi bi-calendar4-week me-2"></i>
+        Seasonal Picks
+      </h2>
+      <p class="section-lead">
+        Plants perfect for <span class="season-highlight"><%= currentSeason %></span>!
+      </p>
+    </div>
+    <div class="row justify-content-center">
+      <% seasonalPlants.forEach(plant => { %>
+        <div class="col-6 col-md-3 mb-4">
+          <div class="plant-card h-100">
+            <img src="<%= plant.image %>" class="card-img-top" alt="<%= plant.name %>">
+            <div class="card-body d-flex flex-column">
+              <h6 class="card-title"><%= plant.name %></h6>
+              <p class="card-text"><%= plant.shortDescription %></p>
+              <a href="/plants/<%= plant.id %>" class="btn btn-outline-success btn-sm rounded-pill">View</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<!--Quick Plant Finder-->
+<section class="plant-finder-section py-5 mb-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">
+        <i class="bi bi-search me-2"></i>
+        Find Your Plant
+      </h2>
+      <p class="section-lead">
+        Search by name, light, care level, or more!
+      </p>
+    </div>
+    <form action="/plants" method="get" class="row justify-content-center">
+      <div class="col-12 col-md-6 mb-2">
+        <input type="text" name="q" class="form-control rounded-pill" placeholder="Enter plant name or keyword...">
+      </div>
+      <div class="col-12 col-md-2 mb-2">
+        <select name="light" class="form-select rounded-pill">
+          <option value="">Light</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="bright">Bright</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-2 mb-2">
+        <select name="care" class="form-select rounded-pill">
+          <option value="">Care Level</option>
+          <option value="easy">Easy</option>
+          <option value="moderate">Moderate</option>
+          <option value="challenging">Challenging</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-2 mb-2">
+        <button type="submit" class="btn btn-success w-100 rounded-pill">Search</button>
+      </div>
+    </form>
+  </div>
+</section>
+<!--User Plant Gallery-->
+<section class="user-gallery-section py-5 mb-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">
+        <i class="bi bi-images me-2"></i>
+        Community Gallery
+      </h2>
+      <p class="section-lead">
+        See how our community grows! Share your own plant photos and get featured.
+      </p>
+    </div>
+    <div class="row">
+      <% userGallery.forEach(photo => { %>
+        <div class="col-6 col-md-3 mb-4">
+          <div class="gallery-card rounded overflow-hidden">
+            <img src="<%= photo.url %>" alt="User plant" class="img-fluid w-100">
+            <div class="gallery-user">
+              <i class="bi bi-person-circle me-1"></i> <%= photo.user %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <div class="text-center mt-3">
+      <a href="/gallery" class="btn btn-success rounded-pill">View Full Gallery</a>
+    </div>
+  </div>
+</section>
 
 <%- include('partials/footer') %>
 

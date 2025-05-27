@@ -12,73 +12,169 @@ body {
   color: var(--forest);
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
+/* =======================
+   Plant Paradise Navbar
+   ======================= */
 
-/* Navbar styles */
 .navbar {
-  background-color: var(--cream) !important;
-  border-bottom: 3px solid var(--forest);
-  box-shadow: 0 2px 8px rgba(53, 88, 52, 0.03);
+  border-bottom: 3px solid var(--moss);
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(53, 88, 52, 0.07);
+  z-index: 1050;
 }
 
-.navbar-brand,
-.navbar-brand span {
-  color: var(--forest) !important;
+.navbar .navbar-brand {
+  font-size: 2rem;
   font-weight: bold;
-  font-size: 1.5rem;
+  color: var(--forest);
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.navbar-nav .nav-link {
-  color: var(--forest) !important;
+.navbar .navbar-brand span {
+  font-size: 1.5rem;
+}
+
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: var(--moss);
+  text-decoration: none;
+}
+
+/* Ensure nav items are always on one line and evenly spaced */
+.navbar .navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem; /* Space between each item */
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.navbar .nav-item {
+  white-space: nowrap; /* Prevent link text from breaking into two lines */
+}
+
+.navbar .nav-link {
+  color: var(--forest);
   font-weight: 500;
-  transition: color 0.2s;
-}
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
-  color: var(--moss) !important;
-  text-decoration: underline;
+  font-size: 1.08rem;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2rem;
+  background: transparent !important;
+  transition: color 0.2s, background 0.2s;
+  margin: 0 0.05rem;
+  white-space: nowrap;
 }
 
-.btn-success {
-  background-color: var(--moss);
+.navbar .nav-link.active,
+.navbar .nav-link:focus,
+.navbar .nav-link:hover {
+  color: var(--moss);
+  background: none !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Add Plant button stands out */
+.navbar .btn-success {
+  background: var(--moss);
   border: none;
-  color: var(--cream);
   font-weight: 600;
-  transition: background 0.2s;
-}
-.btn-success:hover {
-  background-color: var(--forest);
-  color: var(--cream);
+  font-size: 1.08rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  margin-left: 0.5rem;
+  transition: background 0.2s, box-shadow 0.2s;
+  color: #fff;
 }
 
-.btn-outline-success {
+.navbar .btn-success:hover,
+.navbar .btn-success:focus {
+  background: var(--forest);
+  box-shadow: 0 2px 8px rgba(53, 88, 52, 0.12);
+  color: #fff;
+}
+
+/* Search Form */
+.navbar form[role="search"] .form-control {
+  border-radius: 2rem;
+  background: var(--cream);
+  border: 1px solid var(--moss);
+  color: var(--forest);
+  font-size: 1rem;
+  min-width: 170px;
+  transition: border-color 0.2s;
+}
+
+.navbar form[role="search"] .form-control:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 2px rgba(107, 143, 113, 0.15);
+}
+
+.navbar .btn-outline-success {
   border-color: var(--moss);
   color: var(--moss);
-  background: transparent;
+  background: #fff;
+  font-weight: 500;
+  border-radius: 2rem;
   transition: background 0.2s, color 0.2s;
 }
-.btn-outline-success:hover {
+
+.navbar .btn-outline-success:hover,
+.navbar .btn-outline-success:focus {
   background: var(--moss);
-  color: var(--cream);
+  color: #fff;
 }
 
-.form-control {
-  background: var(--earth);
-  color: var(--forest);
-  border: none;
-  border-radius: 50rem;
-}
-.form-control:focus {
-  box-shadow: 0 0 0 0.2rem var(--sage);
-  border-color: var(--moss);
+/* Responsive Tweaks */
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav {
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .navbar .nav-link {
+    margin: 0.25rem 0;
+    padding: 0.7rem 1.2rem;
+    text-align: center;
+    font-size: 1.08rem;
+  }
+  .navbar .btn-success,
+  .navbar .btn-outline-success {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .navbar form[role="search"] {
+    width: 100%;
+    margin-top: 0.5rem;
+    justify-content: center;
+  }
 }
 
-.navbar-toggler {
-  border-color: var(--moss);
+@media (max-width: 575.98px) {
+  .navbar .navbar-brand {
+    font-size: 1.3rem;
+  }
+  .navbar .btn-success,
+  .navbar .btn-outline-success {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .navbar form[role="search"] .form-control {
+    font-size: 0.95rem;
+    min-width: 120px;
+  }
 }
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(53,88,52, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+
+.navbar .nav-link:focus {
+  outline: none;
+  box-shadow: none;
 }
+
 footer,
 .footer {
   background: var(--cream);
@@ -731,3 +827,174 @@ footer,
     font-size: 0.95rem;
   }
 }
+/* General Section Titles and Lead */
+.section-title {
+  color: var(--forest);
+  font-weight: bold;
+}
+.section-lead {
+  color: var(--sage);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Plant Categories */
+.plant-categories-section .category-card {
+  background: var(--cream);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
+  transition: transform 0.2s;
+}
+.plant-categories-section .category-card:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+.category-title {
+  color: var(--forest);
+  font-weight: 600;
+}
+.category-desc {
+  color: var(--sage);
+  font-size: 0.95rem;
+}
+
+/* Plant of the Week */
+.plant-of-week-section {
+  background: var(--earth);
+}
+.plant-of-week-img {
+  max-width: 230px;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(60,60,60,0.12);
+}
+.plant-week-title {
+  color: var(--forest);
+  font-weight: bold;
+}
+.plant-week-desc {
+  color: var(--sage);
+}
+.plant-week-info {
+  list-style: none;
+  padding: 0;
+  color: var(--forest);
+  font-size: 1rem;
+}
+
+/* Trending Plants & Seasonal Picks */
+.trending-plants-section {
+  background: var(--earth);
+}
+
+.trending-plants-grid {
+  row-gap: 2rem;
+}
+
+.trending-plant-card {
+  background: rgba(255,255,255,0.97);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-height: 410px;
+}
+
+.trending-plant-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.16);
+}
+
+.trending-plant-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 1.2rem 1.2rem 0 0;
+  background: #eaf9ea;
+  display: block;
+}
+
+.trending-badge {
+  font-size: 0.93rem;
+  padding: 0.4em 1em;
+  border-radius: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.why-trending {
+  background: rgba(34, 139, 34, 0.08);
+  color: var(--forest);
+  border-radius: 1rem;
+  font-style: italic;
+  font-size: 0.97em;
+}
+
+@media (max-width: 1200px) {
+  .trending-plant-card {
+    min-height: 380px;
+  }
+  .trending-plant-img {
+    height: 150px;
+  }
+}
+@media (max-width: 900px) {
+  .trending-plant-card {
+    min-height: 340px;
+  }
+  .trending-plant-img {
+    height: 120px;
+  }
+}
+@media (max-width: 768px) {
+  .trending-plant-card {
+    min-height: 300px;
+  }
+  .trending-plant-img {
+    height: 100px;
+  }
+}
+
+
+/* Plant Finder */
+.plant-finder-section input,
+.plant-finder-section select {
+  border: 1px solid var(--moss);
+  background: var(--cream);
+  color: var(--forest);
+}
+
+/* User Gallery */
+.user-gallery-section .gallery-card {
+  background: var(--cream);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
+  overflow: hidden;
+}
+.user-gallery-section .gallery-user {
+  background: var(--earth);
+  color: var(--forest);
+  font-size: 0.95rem;
+  padding: 0.5rem;
+}
+
+/* Plant Care Calendar */
+.plant-calendar-section .calendar-task-card {
+  background: var(--cream);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
+}
+.calendar-task-title {
+  color: var(--forest);
+  font-weight: bold;
+}
+.calendar-task-date {
+  color: var(--sage);
+  font-size: 0.95rem;
+}
+.calendar-task-desc {
+  color: var(--forest);
+}
+

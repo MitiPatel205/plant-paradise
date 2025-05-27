@@ -6,7 +6,8 @@ const Plant = sequelize.define('Plant', {
   description: { type: DataTypes.TEXT, allowNull: false },
   image: { type: DataTypes.STRING, allowNull: true },
   isNew: { type: DataTypes.BOOLEAN, defaultValue: false },
-  isEasyCare: { type: DataTypes.BOOLEAN, defaultValue: false }
+  isEasyCare: { type: DataTypes.BOOLEAN, defaultValue: false },
+  isTrending: { type: DataTypes.BOOLEAN, defaultValue: false }
 });
 
 module.exports = Plant;

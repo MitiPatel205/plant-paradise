@@ -3,32 +3,32 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+    // Add isNew column
     await queryInterface.addColumn('Plants', 'isNew', {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
+      allowNull: false,
     });
+    // Add isEasyCare column
     await queryInterface.addColumn('Plants', 'isEasyCare', {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
+      allowNull: false,
+    });
+    // Add isTrending column
+    await queryInterface.addColumn('Plants', 'isTrending', {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
     });
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-    down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn('Plants', 'isNew');
+    // Remove isTrending column
+    await queryInterface.removeColumn('Plants', 'isTrending');
+    // Remove isEasyCare column
     await queryInterface.removeColumn('Plants', 'isEasyCare');
-  }
+    // Remove isNew column
+    await queryInterface.removeColumn('Plants', 'isNew');
   }
 };
