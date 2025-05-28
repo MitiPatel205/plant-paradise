@@ -1,6 +1,9 @@
 # Plant Paradise
 
 Welcome to **Plant Paradise** — your green escape in the digital world! Plant Paradise is a vibrant web platform for plant lovers to discover, collect, and share their favorite plants. Whether you’re a seasoned botanist or just starting your plant journey, our community and expert resources will help your indoor garden thrive.
+## 🌱 Project Output
+
+![Plant Paradise Output](public/images/Plant%20Paradise.png)
 
 ## 🌿 Features
 
