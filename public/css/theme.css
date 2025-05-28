@@ -364,6 +364,72 @@ footer,
   background: var(--cream);
   border-radius: 1rem;
   box-shadow: 0 2px 16px rgba(53, 88, 52, 0.04);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.plant-scroll-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.plant-card-wrapper {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  display: flex;
+}
+
+.plant-card {
+  background: var(--earth);
+  border: none;
+  border-radius: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+  width: 100%;
+  min-height: 390px;
+  max-width: 320px;
+  box-shadow: 0 2px 16px rgba(53, 88, 52, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.plant-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(53, 88, 52, 0.12);
+}
+
+.plant-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background: #e8ecec;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.2rem;
+}
+
+.card-title {
+  color: var(--forest);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.card-text {
+  color: var(--sage);
+  font-size: 0.98rem;
+  margin-bottom: 1rem;
 }
 
 .featured-badge {
@@ -374,32 +440,15 @@ footer,
   box-shadow: 0 2px 8px rgba(53, 88, 52, 0.08);
 }
 
-.plant-card {
-  background: var(--earth);
-  border: none;
-  border-radius: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-  overflow: hidden;
-}
-.plant-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 8px 24px rgba(53, 88, 52, 0.12);
-}
-
-.card-title {
-  color: var(--forest);
-  font-weight: bold;
-}
-
-.card-text {
-  color: var(--sage);
-}
-
 .btn-outline-success {
   border-color: var(--moss);
   color: var(--moss);
   background: transparent;
   transition: background 0.2s, color 0.2s;
+  border-radius: 2rem;
+  padding: 0.45em 1.3em;
+  font-weight: 500;
+  font-size: 0.96rem;
 }
 .btn-outline-success:hover {
   background: var(--moss);
@@ -412,10 +461,23 @@ footer,
   color: var(--cream);
   font-weight: 600;
   transition: background 0.2s;
+  border-radius: 2rem;
 }
 .btn-success:hover {
   background-color: var(--forest);
   color: var(--cream);
+}
+
+/* Responsive tweaks */
+@media (max-width: 991px) {
+  .plant-card-wrapper { flex: 0 0 260px; }
+  .plant-card img { height: 160px; }
+  .plant-card { min-height: 300px; }
+}
+@media (max-width: 767px) {
+  .plant-card-wrapper { flex: 0 0 90vw; }
+  .plant-card img { height: 120px; }
+  .plant-card { min-height: 210px; }
 }
 
 .testimonials-section {
@@ -966,35 +1028,4 @@ footer,
   color: var(--forest);
 }
 
-/* User Gallery */
-.user-gallery-section .gallery-card {
-  background: var(--cream);
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
-  overflow: hidden;
-}
-.user-gallery-section .gallery-user {
-  background: var(--earth);
-  color: var(--forest);
-  font-size: 0.95rem;
-  padding: 0.5rem;
-}
-
-/* Plant Care Calendar */
-.plant-calendar-section .calendar-task-card {
-  background: var(--cream);
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
-}
-.calendar-task-title {
-  color: var(--forest);
-  font-weight: bold;
-}
-.calendar-task-date {
-  color: var(--sage);
-  font-size: 0.95rem;
-}
-.calendar-task-desc {
-  color: var(--forest);
-}
 

@@ -41,6 +41,10 @@ app.get('/', async (req, res) => {
     // Trending Plants (customize logic as needed)
     const trendingPlants = await Plant.findAll({ where: { isTrending: true }, limit: 4 });
 
+    // === LOG THE DATA HERE ===
+    console.log('Trending Plants:', JSON.stringify(trendingPlants, null, 2));
+    // =========================
+
     // Seasonal Picks
     const currentSeason = getCurrentSeason();
     // Make sure your Plant model has a 'season' field

@@ -20,7 +20,6 @@
   </div>
 </section>
 
-<!-- Featured Plants -->
 <!-- Featured Plants Section -->
 <section class="featured-plants-section py-5 mb-5">
   <div class="container">
@@ -34,21 +33,20 @@
         Handpicked for you! Discover our most-loved and beginner-friendly plants to brighten your home and purify your air.
       </p>
     </div>
-    <!-- Plant Cards -->
-    <div class="row justify-content-center">
-      <% plants.slice(0,3).forEach(plant => { %>
-        <div class="col-md-4 mb-4">
+    <!-- Plant Cards - Horizontal Scroll -->
+    <div class="plant-scroll-row">
+      <% plants.forEach(plant => { %>
+        <div class="plant-card-wrapper">
           <div class="card shadow plant-card h-100 position-relative">
-            <!-- Optional: Plant Badge -->
             <% if (plant.isNew) { %>
               <span class="badge bg-success position-absolute top-0 end-0 m-2 featured-badge">New</span>
             <% } else if (plant.isEasyCare) { %>
               <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2 featured-badge">Easy Care</span>
             <% } %>
-            <img src="<%= plant.image %>" class="card h-100 shadow-sm blog-card card-img-top" alt="<%= plant.name %>">
+            <img src="/images/<%= plant.image %>" alt="<%= plant.name %>" class="card-img-top">
             <div class="card-body d-flex flex-column">
-              <h5 class="card-title" style="color: var(--forest);"><%= plant.name %></h5>
-              <p class="card-text" style="color: var(--sage);"><%= plant.description %></p>
+              <h5 class="card-title"><%= plant.name %></h5>
+              <p class="card-text"><%= plant.description %></p>
               <div class="mt-auto">
                 <a href="/plants/<%= plant.id %>" class="btn btn-outline-success rounded-pill btn-sm">View Details</a>
               </div>
@@ -63,6 +61,7 @@
     </div>
   </div>
 </section>
+
 
 
 <!-- About Section -->
@@ -571,7 +570,7 @@
             <% if (plant.isRare) { %>
               <span class="badge trending-badge bg-warning text-dark position-absolute top-0 end-0 m-2">Rare</span>
             <% } %>
-            <img src="<%= plant.image %>" class="card-img-top trending-plant-img" alt="<%= plant.name %>">
+            <img src="/images/<%= plant.image %>" class="card-img-top trending-plant-img" alt="<%= plant.name %>">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title mb-1" style="color: var(--forest);"><%= plant.name %></h5>
               <div class="mb-2">
@@ -612,34 +611,8 @@
   </div>
 </section>
 
-<!--Seasonal Picks-->
-<section class="seasonal-picks-section py-5 mb-5">
-  <div class="container">
-    <div class="text-center mb-4">
-      <h2 class="section-title">
-        <i class="bi bi-calendar4-week me-2"></i>
-        Seasonal Picks
-      </h2>
-      <p class="section-lead">
-        Plants perfect for <span class="season-highlight"><%= currentSeason %></span>!
-      </p>
-    </div>
-    <div class="row justify-content-center">
-      <% seasonalPlants.forEach(plant => { %>
-        <div class="col-6 col-md-3 mb-4">
-          <div class="plant-card h-100">
-            <img src="<%= plant.image %>" class="card-img-top" alt="<%= plant.name %>">
-            <div class="card-body d-flex flex-column">
-              <h6 class="card-title"><%= plant.name %></h6>
-              <p class="card-text"><%= plant.shortDescription %></p>
-              <a href="/plants/<%= plant.id %>" class="btn btn-outline-success btn-sm rounded-pill">View</a>
-            </div>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
+
+
 <!--Quick Plant Finder-->
 <section class="plant-finder-section py-5 mb-5">
   <div class="container">
@@ -678,35 +651,7 @@
     </form>
   </div>
 </section>
-<!--User Plant Gallery-->
-<section class="user-gallery-section py-5 mb-5">
-  <div class="container">
-    <div class="text-center mb-4">
-      <h2 class="section-title">
-        <i class="bi bi-images me-2"></i>
-        Community Gallery
-      </h2>
-      <p class="section-lead">
-        See how our community grows! Share your own plant photos and get featured.
-      </p>
-    </div>
-    <div class="row">
-      <% userGallery.forEach(photo => { %>
-        <div class="col-6 col-md-3 mb-4">
-          <div class="gallery-card rounded overflow-hidden">
-            <img src="<%= photo.url %>" alt="User plant" class="img-fluid w-100">
-            <div class="gallery-user">
-              <i class="bi bi-person-circle me-1"></i> <%= photo.user %>
-            </div>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-    <div class="text-center mt-3">
-      <a href="/gallery" class="btn btn-success rounded-pill">View Full Gallery</a>
-    </div>
-  </div>
-</section>
+
 
 <%- include('partials/footer') %>
 
